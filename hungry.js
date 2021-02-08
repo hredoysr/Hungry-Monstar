@@ -13,7 +13,7 @@ function SearchForMeal(element) {
     //get search meal
     const searchMeal = document.getElementById('search');
     const meal = searchMeal.value;
-    console.log(meal);
+
 
     //check for empty
     if (meal.trim()) {
@@ -51,20 +51,29 @@ function SearchForMeal(element) {
 //Ingredient Part
 const displayIngredient = meal => {
 
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`
+    const url = `https://www.themealdb.com/api/json/v1/1/list.php?i=${meal}`
     fetch(url)
         .then(res => res.json())
-        .then(data => renderMealInfo(data));
+        .then(data => renderIngredient(data.meals));
 
-    console.log(url);
+
 
 }
-const renderMealInfo = meal => {
-    const ingredient = document.getElementById('ingredient');
-    ingredient.innerHTML = `
-    <h1> ${meal.strIngredient}</h1>
- `
+const renderIngredient = ingredients => {
 
+    const ingredientImage = document.getElementById('ingredient-image');
+
+    const ingredientContainer = document.getElementById('ingredient-container');
+
+
+    for (let i = 1; i < 10; i++) {
+
+        const li = document.createElement('li');
+        li.innerText = ingredients[i].strIngredient;
+        ingredientContainer.appendChild(li);
+        const img = document.createElement('img')
+        img.innerHTML = ingredients[i].strMealThumb;
+    };
 }
 
 
