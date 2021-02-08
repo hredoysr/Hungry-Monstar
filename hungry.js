@@ -73,6 +73,7 @@ const renderIngredient = ingredients => {
         ingredientContainer.appendChild(li);
         const img = document.createElement('img')
         img.innerHTML = ingredients[i].strMealThumb;
+        ingredientImage.appendChild(img);
     };
 }
 
